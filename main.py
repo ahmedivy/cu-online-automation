@@ -1,3 +1,7 @@
+'''
+     Web Automation of CU-Online Lahore
+'''
+
 from script import *
 import sys
 from selenium.common.exceptions import ElementClickInterceptedException
