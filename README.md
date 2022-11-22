@@ -14,3 +14,5 @@ After cloning:
    - First time it asks for the path of chrome web driver in your system and credentials
 - To view Offline(last Updated):
   <code>python main.py offline</code>
+  
+  ![image](https://user-images.githubusercontent.com/91587113/203394946-f86458d0-0608-4c4b-920f-0d52fea562d6.png)
