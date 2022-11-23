@@ -26,5 +26,7 @@ def main(offline=False):
         for chunk in getOffline():
             prettyPrint(chunk)
 
-if "--offline" or "-o" in sys.argv: 
+if "--offline" in sys.argv or "-o" in sys.argv: 
     main(offline=True)
+else:
+    main()
