@@ -6,9 +6,9 @@ from script import *
 import sys
 from selenium.common.exceptions import ElementClickInterceptedException
 
-def main(*args):
+def main(offline=False):
     print("Starting...")
-    if len(args) == 1:
+    if not offline:
         try:
             for chunk in generator():
                 prettyPrint(chunk)
@@ -22,9 +22,9 @@ def main(*args):
             setLoginDetails(input("Enter username: "), input("Enter password: "))
             main()
                 
-    if "offline" in args:
+    else:
         for chunk in getOffline():
             prettyPrint(chunk)
-            
-if __name__ == "__main__":
-    main(sys.argv)
+
+if sys.argv[1] == "offline":     
+    main(offline=True)
