@@ -76,7 +76,7 @@ def generator(headless=True):
     
     # Closing the popup
     driver.find_element(By.XPATH, POPUP_XPATH).click()
-
+    
     # Entering the username and password
     username, password = getLoginDetails()
 
@@ -87,6 +87,7 @@ def generator(headless=True):
     driver.switch_to_frame(driver.find_element(By.TAG_NAME, "iframe"))
     driver.find_element(By.XPATH, CAPTCHA_XPATH).click()
     sleep(12) if not headless else sleep(2)
+    driver.minimize_window() if not headless else None
     driver.switch_to.default_content()
 
     try:
@@ -166,14 +167,13 @@ def prettyPrint(data):
     if data["tag"] == "Main":
         print("Main Details")
         tabulatedData = []
-        header = [ft.apply(i, "bold/blue") for i in ["Course Code", "Title", "Credits", "Lab Attendance", "Theory Attendance"]]
+        header = [ft.apply(i, "bold/blue") for i in ["Course Code", "Title", "Credits", "Theory Attendance", "Lab Attendance"]]
         for key, value in data["data"].items():
             tabulatedData.append([value["title"], value["courseCode"],
                                 value["credits"], value["theoryAttendance"],
                                 "N/A" if value["labAttendance"] == None else value["labAttendance"]])
         print(tabulate(tabulatedData, headers=header, tablefmt="fancy_grid"))
         print(f"Last Updated: {data['lastUpdated']}\n")
-        
     else:
         print(data["tag"])
         time = data["lastUpdated"]
